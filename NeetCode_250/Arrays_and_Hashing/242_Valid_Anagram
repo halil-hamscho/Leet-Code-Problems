@@ -1,0 +1,70 @@
+"""
+car
+rat
+
+sorted
+acr
+art
+
+Yeah so my initial thought was
+- Just make two hash maps/ditionaries, iterate with (number, count)
+then once we populate those hashmaps, then we do an equality check and see they are the same.
+I would assume this is O(n) since its singular for loops twice and a comparison loop
+Space Complexity would be O(n) since we just have twice the dictionaries
+
+
+It really is O(s + t) since we traverse at worse s and t
+we can also say that if the problem revolves around only 26 letters, then it changes the space
+
+Python Things:
+- if letter not in dict_s.keys() NO
+- if letter not in dict_s (dictionary membership checks keys automatically)
+
+
+        # letter, count
+        dict_s = {}
+        dict_t = {}
+
+        for letter in s:
+            dict_s[letter] = dict_s.get(letter, 0) + 1
+
+        for letter in t:
+            dict_t[letter] = dict_t.get(letter, 0) + 1
+
+        return dict_s == dict_t
+
+Solution with only one dictionary:
+
+return all(count == 0 for counts.values())
+
+Learned:
+- counts.get(letter, 0), default dictionary value
+- for a, b in zip(z, t), iterate through two sequences simultaneously
+- for count in counts.values(), iterate through dictionary values
+- all(count == 0 for count in counts.values())
+"""
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+
+        if len(s) != len(t):
+            return False
+
+        counts = {}
+        for letter_s, letter_t in zip(s, t):
+            counts[letter_s] = counts.get(letter_s, 0) + 1
+            counts[letter_t] = counts.get(letter_t, 0) - 1
+
+        for count in counts.values():
+            if count != 0:
+                return False
+
+        return True
+
+
+if __name__ == "__main__":
+    s, t = "cat", "rat"
+    result = Solution().isAnagram(s, t)
+    if result == False:
+        print(f"Good Job")
+    else:
+        print(f"You failed")

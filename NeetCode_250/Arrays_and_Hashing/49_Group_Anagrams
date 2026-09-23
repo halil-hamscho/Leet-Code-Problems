@@ -1,0 +1,81 @@
+from typing import List
+
+"""
+
+brute force solution:
+utilize the hashmap solution of last time?
+
+- decompose every single word in the list?
+
+List of HashMap?
+
+Need to make the key the sorted letters, since that way we can have O(1) comparison
+
+for each n words, you sort about k characters
+
+Time: O (n * k log k)
+
+hashMap = {} # key:sorted word, value, [word]
+for word in strs:
+
+    hashed_key = tuple(sorted(word))
+
+    if hashed_key not in hashMap:
+        hashMap[hashed_key] = [word]
+
+    else:
+        hashMap[hashed_key].append(word)
+
+result = []
+for lists in hashMap.values():
+    result.append(lists)
+
+return result
+
+
+so with sorting, we were O (n x l log l)
+but with count array: O (n * l), now each character has to be visited only once
+
+hashed_key = tuple(count) this costs O(26) but it is constant time
+
+for space complexity, the hashmap contains n keys x 26 values
+
+two words are anagrams if and only if they contain the same charactes with the same frequencies
+
+
+Main Pattern: HashMap grouping by frequency
+
+Key Invariant: same frequency for anagram, 26 element frequency fingerprint
+
+Time: O (n x k) 
+
+Auxiliary Space: O (n) fixed 26 character alphabet assumption
+
+Intuition: when you need to group objects by equivalence, ask whether you can create a 
+canonical fingerprint such that equivalent objects always produce the same hashmap key
+
+"""
+from collections import defaultdict
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+
+        hashMap = defaultdict(list) # fingerprint -> list of words
+
+        for string in strs:
+            count = [0] * 26 # fingerprint
+            for letter in string:
+                index = ord(letter) - ord("a") # letter - baseline
+                count[index] += 1
+
+            hashed_key = tuple(count)
+            hashMap[hashed_key].append(string)
+
+        return list(hashMap.values())
+
+if __name__ == "__main__":
+    strs = ["eat","tea","tan","ate","nat","bat"]
+    output = [["bat"],["nat","tan"],["ate","eat","tea"]]
+    result = Solution().groupAnagrams(strs)
+    if result != output:
+        print("Bad")

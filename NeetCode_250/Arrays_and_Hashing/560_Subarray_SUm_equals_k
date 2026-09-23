@@ -1,0 +1,26 @@
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        hashmap = defaultdict(int)
+        hashmap[0] = 1
+
+        result = 0
+        prefix_sum = 0
+
+        for num in nums:
+            prefix_sum += num
+
+            if prefix_sum - k in hashmap:
+                result += hashmap[prefix_sum - k]
+
+            hashmap[prefix_sum] += 1            
+
+        return result
+
+
+
+if __name__ == "__main__":
+    nums = [1, 1, 1]
+    result = Solution().subarraySum(nums, 2)

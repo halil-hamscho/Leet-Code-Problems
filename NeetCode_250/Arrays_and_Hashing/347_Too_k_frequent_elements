@@ -1,0 +1,33 @@
+from typing import List
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+
+        # Phase 1: Populate HashMap
+        counts = {} # number, frequency
+        for num in nums:
+            counts[num] = counts.get(num, 0) + 1
+
+        # Phase 2: Populate array index = frequency
+        buckets = [[] for _ in range(len(nums) + 1)] # frequency is index
+        for key, value in counts.items():
+            buckets[value].append(key)
+
+        # Phase 3: Calculate k top
+        result = []
+        for i in range(len(buckets) - 1, -1, -1):
+            for num in buckets[i]: 
+                result.append(num)
+
+                if len(result) == k:
+                    return result
+
+        return result
+
+        
+
+if __name__ == "__main__":
+    input = [1,1,1,2,2,3]
+    k = 2
+    output = [1, 2]
+    result = Solution().topKFrequent(input, k)

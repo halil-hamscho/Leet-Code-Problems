@@ -1,16 +1,19 @@
 class Solution:
     def decodeString(self, s: str) -> str:
+
         stack = []
 
-        for string in s:
-            if string != "]":
-                stack.append(string)
-                continue
+        for char in s:
 
+            if char != "]":
+                stack.append(char)
+                continue
+            
             temp_s = []
             while stack[-1] != "[":
                 temp_s.append(stack.pop())
 
+            # remove "["
             stack.pop()
 
             temp_n = []
@@ -18,8 +21,15 @@ class Solution:
                 temp_n.append(stack.pop())
 
             number = "".join(reversed(temp_n))
-            decoded = "".join(reversed(temp_s))
+            decoded_s = "".join(reversed(temp_s))
 
-            stack.append(int(number) * decoded)
+            stack.append( int(number) * decoded_s)
 
         return "".join(stack)
+        
+
+if __name__ == "__main__":
+    s = "100[leetcode]"
+    result = Solution().decodeString(s)
+    if "accaccacc" == result:
+        print("good")

@@ -1,0 +1,51 @@
+
+from typing import List
+
+class NumMatrix:
+
+    def __init__(self, matrix: List[List[int]]):
+        self.matrix = matrix
+        
+        ROWS = len(matrix)
+        COLS = len(matrix[0])
+        self.prefix = [[0] * (COLS + 1) for _ in range(ROWS + 1)]
+        for row in range(1, ROWS + 1):
+            for col in range(1, COLS + 1):
+                current = self.matrix[row - 1][col - 1]
+                top = self.prefix[row - 1][col]
+                left = self.prefix[row][col - 1]
+                overlap = self.prefix[row - 1][col - 1]
+
+                self.prefix[row][col] = (current + top + left - overlap)
+                 
+                  
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        """
+        in 1D array prefix[right] - prefix[left - 1]
+        with the extra 0
+        prefix[right + 1] - prefix[left]
+        everything is shifted by one
+        Big - Top - Left + Overlap
+        """
+        Big = self.prefix[row2 + 1][col2 + 1]
+        Top = self.prefix[row1][col2 + 1]
+        Left = self.prefix[row2 + 1][col1]
+        Overlap = self.prefix[row1][col1]
+
+        return Big - Top - Left + Overlap
+        
+if __name__ == "__main__":
+    matrix = [[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]]
+    matrix2 = [[3, 0, 1], [5, 6, 3]]
+    result = NumMatrix(matrix)
+    output1 = result.sumRegion(2, 1, 4, 3)
+    output2 = result.sumRegion(1, 1, 2, 2)
+    output3 = result.sumRegion(1, 2, 2, 4)
+    if output1 != 8:
+        print(f"bad")
+    if output2 != 11:
+            print(f"bad")
+    if output3 != 12:
+            print(f"bad")
+            
+    

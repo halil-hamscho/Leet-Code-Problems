@@ -1,0 +1,93 @@
+
+
+class MyHashSet:
+
+    def __init__(self):
+        self.num = 1009 
+        self.buckets = [None] * self.num
+
+
+    def add(self, key: int) -> None:
+
+        bucket_index = key % self.num
+
+        if self.buckets[bucket_index] is None:
+            self.buckets[bucket_index] = Node(key)
+        else:
+            current = self.buckets[bucket_index]
+            while current.next is not None:
+                if current.key == key:
+                    return
+                current = current.next
+
+            # last node
+            if current.key == key:
+                return
+            
+            current.next = Node(key)
+ 
+    def remove(self, key: int) -> None:
+        bucket_index = key % self.num
+        current = self.buckets[bucket_index]
+
+        if current is None:
+            return
+
+        if current.key == key: # removing head edge case
+            self.buckets[bucket_index] = current.next
+            return
+        
+        previous = current
+        current = current.next
+        while current is not None:
+            if current.key == key:
+                previous.next = current.next
+                return
+            
+            previous = current 
+            current = current.next
+
+        if current.key == key: # tail edge case
+            previous.next = None
+        return 
+
+    def contains(self, key: int) -> bool:
+        bucket_index = key % self.num
+        current = self.buckets[bucket_index]
+
+        if current is None:
+            return False
+        
+        while current is not None:
+            if current.key == key:
+                return True
+            current = current.next
+
+        return False
+
+
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.next = None
+
+    def __repr__(self):
+        return f"Node({self.key}, next={self.next})"
+
+
+if __name__ == "__main__":
+    hashSet = MyHashSet()
+    hashSet.add(1)
+    hashSet.remove(1)
+    hashSet.add(2)
+    hashSet.add(1010)
+    hashSet.add(1)
+    hashSet.contains(1)
+    hashSet.contains(3)
+    hashSet.add(2)
+    hashSet.contains(2)
+    hashSet.remove(2)
+    hashSet.contains(2)
+
+
+        

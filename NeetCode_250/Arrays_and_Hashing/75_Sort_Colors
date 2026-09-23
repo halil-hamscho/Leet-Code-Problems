@@ -1,0 +1,61 @@
+from typing import List
+
+"""
+Utilize pointers
+before left all 0s
+left to current all 1s
+current to right unknown
+after right all 2s
+
+4 regions
+0 to left
+left to current
+current to right
+right to end
+- shrink the unknown regions
+
+"Dutch National Flag Algorithm"
+
+Pointers can represent boundaries between regions whose contnes you already know
+
+"""
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        Red, White, Blue
+        0,      1,    2
+        
+        0 case means swap left, move left and current
+        1 case means its already, move current
+        2 case means swap right, subtract right, current stays
+
+        Key thing:
+        when swapping with right, the incoming value must be checked. When swapping with left
+        the incoming value is already known to belong in the middle
+        """
+
+        left = 0
+        right = len(nums) -1
+        current = 0
+        while current <= right:
+            if nums[current] == 0:
+                nums[left], nums[current] = nums[current], nums[left]
+                current += 1
+                left += 1
+            elif nums[current] == 1:
+                current += 1
+            else:
+                nums[right], nums[current] = nums[current], nums[right]
+                right -= 1
+        return nums
+        
+                
+
+if __name__ == "__main__":
+    nums = [2,0,2,1,1,0]
+    output = [0,0,1,1,2,2]
+    result = Solution().sortColors(nums)
+    if result != output:
+        print(f"Bad")

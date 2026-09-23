@@ -1,0 +1,57 @@
+from collections import defaultdict
+
+"""
+# Brute Force solution
+hashmap = defaultdict(int)
+for index, value in enumerate(nums):
+    hashmap[value] = index
+
+counter = 1
+flag = True
+while flag != False:
+    if counter in hashmap:
+        counter += 1
+    else:
+        flag = False
+
+return counter
+"""
+
+class Solution:
+    def firstMissingPositive(self, nums: list[int]) -> int:
+        # target_value = value - 1
+        # we need to re arrange the values since are bounded to [1,n]
+
+        i = 0
+        while i < len(nums):
+            target_index = nums[i] - 1
+
+            if target_index < 0:
+                i += 1
+                continue
+
+            if target_index == i:
+                i += 1
+                continue
+
+            if nums[i] > len(nums):
+                i += 1
+                continue
+
+            if nums[target_index] == nums[i]:
+                i += 1
+                continue
+
+            nums[i], nums[target_index] = nums[target_index], nums[i]
+
+
+        for i in range(len(nums)):
+            if nums[i] != i + 1:
+                return i + 1
+
+        return len(nums) + 1
+
+        
+if __name__ == "__main__":
+    nums = [3,2,1]
+    result = Solution().firstMissingPositive(nums)

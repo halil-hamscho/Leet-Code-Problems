@@ -1,0 +1,43 @@
+class MyQueue:
+
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+
+    def push(self, x: int) -> None:
+
+        self.s1.append(x)
+
+    def pop(self) -> int:
+
+        if not self.s2:
+            while len(self.s1) > 0:
+                self.s2.append(self.s1.pop())
+
+        return self.s2.pop()
+        
+    def peek(self) -> int:
+
+        if not self.s2:
+            while len(self.s1) > 0:
+                self.s2.append(self.s1.pop())
+
+        return self.s2[-1]
+
+    def empty(self) -> bool:
+
+        return not self.s2 and not self.s1
+            
+
+
+if __name__ == "__main__":
+    result = MyQueue()
+    result.push(1)
+    result.push(2)
+    test1 = result.peek() # 1
+    test2 = result.pop() # 1
+    test3 = result.empty() # false
+    print(test1)
+    print(test2)
+    print(test3)
+

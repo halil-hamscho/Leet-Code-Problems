@@ -1,0 +1,24 @@
+class Solution:
+    def calPoints(self, operations: list[str]) -> int:
+        stack = [] # ints only
+
+        for ops in operations:
+            if ops == "C":
+                stack.pop()
+            elif ops == "D":
+                value = stack[-1]
+                stack.append(value * 2)
+            elif ops == "+":
+                value1 = stack[-1]
+                value2 = stack[-2]
+                stack.append(value1 + value2)
+            else:
+                stack.append(int(ops))
+
+        return sum(stack)
+        
+        
+
+if __name__ == "__main__":
+    ops = ["5","2","C","D","+"]
+    result = Solution().calPoints(ops)

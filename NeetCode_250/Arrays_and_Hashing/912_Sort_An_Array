@@ -1,0 +1,82 @@
+from typing import List
+
+"""
+Recursion has about:
+O (log n) levels
+
+For merging, each level does O (n) with O (log n) levels
+
+Time complexity: O (n * log n)
+
+each recursion level processes all n elements during merging, and there
+are about log n levels from repeatedly splitting in half
+
+since we use a merged array, the end we have O (n) so auxiliary space is O (n)
+
+Core Invariant:
+after merge_sort(nums, left, right) returns, the elements from index left through right are sorted
+or nums[left:right + 1]
+
+Merge sort is doing a depth first traversal of the recursion tree, not executing each line
+acorss the whole tree at once
+
+- sort left
+- sort right
+- merge
+- return to parent
+repeat
+
+"""
+
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+
+        def merge_sort(nums, left, right):
+            if left >= right:
+                return
+            
+            mid = (left + right) // 2 
+
+            # Phase 1: recursively make each half sorted
+            merge_sort(nums, left, mid)
+            merge_sort(nums, mid + 1, right)
+
+
+            """
+            Merged starts indexing from 0, while the section nums might represent starts anywheree
+            """
+            # Phase 2: combine those sorted halves
+            i = left
+            j = mid + 1
+            merged = []
+            while i <= mid and j <= right:
+                if nums[i] < nums[j]:
+                    merged.append(nums[i])
+                    i += 1
+                else:
+                    merged.append(nums[j]) 
+                    j += 1
+
+            while i <= mid:
+                merged.append(nums[i])
+                i += 1
+
+            while j <= right:
+                merged.append(nums[j])
+                j += 1
+
+            # fully sorted merged array
+            k = 0
+            while k < len(merged):
+                nums[left + k] = merged[k]
+                k += 1
+
+        merge_sort(nums, 0, len(nums) - 1)
+
+        return nums
+
+if __name__ == "__main__":
+    nums = [5,2,3,1]
+    result = Solution().sortArray(nums)
+    if result != [1,2,3,5]:
+        print(f"Bad Sorting")

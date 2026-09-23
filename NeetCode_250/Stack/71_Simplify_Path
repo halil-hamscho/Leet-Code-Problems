@@ -1,6 +1,7 @@
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        stack = []
+
+        stack = [] # real string
 
         i = 0
         while i < len(path):
@@ -12,16 +13,21 @@ class Solution:
                 temp = ""
                 j = i
 
-                while j < len(path) and path[j] != "/":
+                while path[j] != "/":
                     temp += path[j]
                     j += 1
 
-                if temp == ".." and stack:
+                if temp == "..":
                     stack.pop()
 
                 if temp not in ["..", "."]:
                     stack.append(temp)
 
-                i += j - i
+                i += j - i 
 
         return "/" + "/".join(stack)
+
+if __name__ == "__main__":
+    path = "/.../a/../b/c/../d/./"
+    result = Solution().simplifyPath(path)
+    print(result)

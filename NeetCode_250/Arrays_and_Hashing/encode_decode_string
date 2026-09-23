@@ -1,0 +1,42 @@
+from typing import List
+
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        parts = []
+        for str in strs:
+            length = len(str)
+            parts.append(f"{length}#{str}")
+
+        return "".join(parts)
+
+    def decode(self, s: str) -> List[str]:
+        prev = 0
+        curr = 0
+        result = []
+
+        while curr < len(s):
+            if s[curr] == "#":
+                length = int(s[prev:curr])
+                # Hello, c = H, end = next number
+                start = curr + 1
+                end = start + length
+                result.append(s[start:end])
+                prev = end
+                curr = end
+            curr += 1
+ 
+        return result
+
+
+if __name__ == "__main__":
+    strs = ["Hello", "", "World"]
+
+    result = Solution()
+    encoded_str = result.encode(strs)
+    decoded_str = result.decode(encoded_str)
+
+    if decoded_str != strs:
+        print(f"bad")
+
+    

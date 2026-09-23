@@ -1,0 +1,30 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+
+        hashmap = {
+            "(" : ")",
+            "{" : "}",
+            "[" : "]"
+        }
+
+        for p in s:
+            if p in hashmap:
+                stack.append(p)
+                continue
+
+            if len(stack) == 0: # or not stack
+                return False # closed parenthesis, with no open to match
+
+            temp = stack.pop() # open parentheses
+            if  hashmap[temp] != p:
+                return False
+            
+        return not stack
+            
+
+
+
+if __name__ == "__main__":
+    s = "([)]"
+    result = Solution().isValid(s)

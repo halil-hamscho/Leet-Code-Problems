@@ -1,0 +1,45 @@
+from typing import List
+from collections import defaultdict
+"""
+
+
+key = hashmap.get -> passing the method reference
+With the hashmap it is O(n) time and O(n) space
+
+however we want O(1) space, so how can we improve it?
+
+hashMap = {}
+for num in nums:
+    if num in hashMap:
+        hashMap[num] += 1
+    else:
+        hashMap[num] = 1
+
+return max(
+    hashMap,
+    key=hashMap.get
+)
+"""
+
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        counter = 0
+
+        for num in nums:
+            if counter == 0:
+                candidate = num
+
+            if num == candidate:
+                counter += 1
+            else:
+                counter -= 1
+                
+        return candidate
+
+if __name__ == "__main__":
+    nums = [3,2,3]
+    output = 3
+    result = Solution().majorityElement(nums)
+    if result != output:
+       print(f"bad")

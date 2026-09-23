@@ -1,0 +1,27 @@
+"""
+Best time to buy a stock 1: can only buy and sell once
+- keep track of best buy
+
+Best time to buy a stock 2: can buy and sell multiple times
+
+
+"""
+
+class Solution:
+    def maxProfit(self, prices: list[int]) -> int:
+        max_profit = 0
+        for index, price in enumerate(prices):
+            if index == 0:
+                continue
+
+            yesterday_price = prices[index - 1]
+
+            if price > yesterday_price:
+                profit = price - yesterday_price
+                max_profit += profit
+
+        return max_profit
+
+if __name__ == "__main__":
+    prices = [7,1,5,3,6,4]
+    result = Solution().maxProfit(prices)

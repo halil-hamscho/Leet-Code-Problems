@@ -1,0 +1,79 @@
+class MyHashMap:
+
+    def __init__(self):
+        self.num = 1009
+        self.buckets = [None] * self.num
+
+    def put(self, key: int, value: int) -> None:
+        bucket_index = key % self.num
+        current = self.buckets[bucket_index]
+
+        if current is None:
+            self.buckets[bucket_index] = Node(key, value, None)
+            return
+
+        # previous = nothing, current = first node
+        previous = None
+        while current is not None:
+            if current.key == key:
+                current.value = value
+                return
+            previous = current
+            current = current.next
+
+        # current = None, previous = last Node
+        previous.next = Node(key, value, None)
+
+    def get(self, key: int) -> int:
+        bucket_index = key % self.num
+        current = self.buckets[bucket_index]
+
+        while current is not None:
+            if current.key == key:
+                return current.value
+            current = current.next
+
+        return -1        
+
+    def remove(self, key: int) -> None:
+        bucket_index = key % self.num
+        current = self.buckets[bucket_index]
+
+        if current is None:
+            return
+
+        if current.key == key:
+            # edge case where the first value is the key
+            self.buckets[bucket_index] = current.next
+            return
+
+        previous = current
+        current = current.next
+        while current is not None:
+            if current.key == key:
+                previous.next = current.next
+                return
+            previous = current
+            current = current.next
+        
+
+class Node:
+    def __init__(self, key, value, next):
+        self.key = key
+        self.value = value
+        self.next = next
+    def __repr__(self):
+        print(f"Key: {self.key}, Value: {self.value}, Next: {self.next}")
+        
+
+    
+if __name__ == "__main__":
+    myHashMap = MyHashMap()
+    myHashMap.put(1, 1) 
+    myHashMap.put(2, 2) 
+    myHashMap.get(1)   
+    myHashMap.get(3)   
+    myHashMap.put(2, 1)
+    myHashMap.get(2)   
+    myHashMap.remove(2)
+    myHashMap.get(2);   
