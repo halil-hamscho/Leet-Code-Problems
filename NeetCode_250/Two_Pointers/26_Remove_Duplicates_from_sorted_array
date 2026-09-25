@@ -1,0 +1,33 @@
+"""
+Time O(n)
+Space O(1)
+
+Takeaway here
+- read pointer
+- write pointer
+
+everything from nums[0:a + 1] is unique
+
+"""
+
+class Solution:
+    def removeDuplicates(self, nums: list[int]) -> int:
+
+        a = 0
+        b = 0
+        while b < len(nums):
+
+            if nums[b] > nums[a]:
+                nums[a + 1] = nums[b]
+                a += 1
+                b += 1
+
+                continue
+
+            b += 1
+
+        return a
+
+if __name__ == "__main__":
+    nums = [1,2]
+    result = Solution().removeDuplicates(nums)
