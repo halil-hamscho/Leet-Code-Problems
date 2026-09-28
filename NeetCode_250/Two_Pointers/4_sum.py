@@ -27,7 +27,13 @@ a move through n values
 
 Time: O(n^3)
 Space: O(1)
+Space:
 
+O(1) auxiliary for the algorithm itself
+
+O(n) worst case because Python sorting may use extra memory
+
+O(k) for the output, where k is the number of quadruplets
 
 """
 
