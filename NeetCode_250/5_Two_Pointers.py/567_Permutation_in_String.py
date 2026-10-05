@@ -2,6 +2,26 @@
 
 Observation: len(s1) determines a fixed window size in s2
 
+Mental Model
+    - Right pointer expands first
+    - Left pointer repairs the window afterward
+
+Because the target size is fixed, r adds exactly one character and l removes exactly 
+one when necessary
+
+Pattern: Fixed size sliding window plus frequency counts
+
+Invariant: window always represents s2[l: r + 1]
+
+Time: O(n) where n = len(s2), comparing maps is O(1) here because there are only
+26 lowercase letters
+
+Space: O(1) because each frequency map has at most 26 entries
+
+Recognition: Fixed length contiguous substring plus comparing character frequncies usually
+suggests fixed sliding window
+
+
 """
 
 from collections import defaultdict
