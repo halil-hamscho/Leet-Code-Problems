@@ -28,11 +28,7 @@ When modifying a linked list portion
 - preserve boundaries
 - modify pointers
 - reconnect boundaries
-
-
 """
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
