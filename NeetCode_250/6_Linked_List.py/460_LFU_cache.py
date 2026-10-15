@@ -25,19 +25,29 @@ class LFUCache:
 
         if key in self.cache:
             # increase freq by 1
-            self.updateFrequency(self.cache[key])
             node = self.cache[key]
-            node = value
+            self.updateFrequency(node)
+            node.value = value
             return
         
         # cache is full
         if len(self.cache) >= self.capacity:
 
-            
-            # First do LFU
-            
+            lfu_linked_list = self.freq[self.min_freq]
+            lfu_node = lfu_linked_list.head.next
 
-            # Second do LRU
+            # Remove from freq and cache
+            del self.cache[lfu_node.key]
+            lfu_linked_list.remove(lfu_node)
+
+        node = Node(key, value)
+
+        self.cache[key] = node
+        self.freq[node.freq].insert(node)
+        
+        self.min_freq = 1
+
+        return
 
     def updateFrequency(self, node):
 
@@ -80,7 +90,6 @@ class DoublyLinkedList:
 
     def isEmpty(self):
         return self.head.next is self.tail
-
 
 class Node:
 
