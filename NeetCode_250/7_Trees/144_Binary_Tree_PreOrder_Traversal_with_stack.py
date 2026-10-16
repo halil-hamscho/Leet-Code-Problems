@@ -1,3 +1,11 @@
+"""
+Time O(n)
+Aux Space: O(h) 
+- balanced tree O (log n)
+- Skewed Tree O(n)
+
+"""
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
