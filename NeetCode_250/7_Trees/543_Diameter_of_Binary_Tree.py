@@ -1,3 +1,27 @@
+"""
+
+Pattern: Bottom Up DFS + external variable tracking
+
+Invariant: After processing a subtre, DFS returns its correct height
+max_diameter includes the longest path discovered in that subtree
+
+Python Takeaway: non local allows a nested function to modify a variable
+
+Recognition Heuristic:
+- When the answer could occur anywhere in the tree, but each node needs information
+from its children, consider a bottom up DFS with a separate variable tracking the best answere
+
+Remember:
+- What a recursive function returns does not necessarily have to be the final answer you're looking for.
+
+Another takeaway is that
+
+after we finish the subtree calculations (left_height, right_height)
+
+we can then find the max_diameter
+"""
+
+
 from typing import Optional
 
 # Definition for a binary tree node.
