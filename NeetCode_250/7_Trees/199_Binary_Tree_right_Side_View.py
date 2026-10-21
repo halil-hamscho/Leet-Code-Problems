@@ -15,7 +15,6 @@ Time: O(n)
 Space:
 - O(w) for deque (longest diameter)
 - O(h) for auxiliary since we keep track of a len of nodes since one value per level
-
 """
 
 from collections import deque
