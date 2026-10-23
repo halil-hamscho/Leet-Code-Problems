@@ -25,10 +25,11 @@ class Solution:
                 nonlocal output
                 output += 1
 
-            left_value = dfs(node.left, max(max_value, node.val))
-            right_value = dfs(node.right, max(max_value, node.val))
+            dfs(node.left, max(max_value, node.val))
+            dfs(node.right, max(max_value, node.val))
 
             return
+
 
         return dfs(root, root.val)
 
