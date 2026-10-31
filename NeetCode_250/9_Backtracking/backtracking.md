@@ -29,6 +29,10 @@ Expect 2^n possibilities, if we must store or copy each subsset, account for the
 Intuition: In Subsets, every decision advances the index because
 each element can be used only once
 
+Sometimes, instead of reconstructing information from the current path, you can maintain an accumulated state as you explore
+
+LeetCode 1863: Sum of All Subset XOR Totals
+dfs(index) n-> dfs(index, current_xor)
 Combination Sum:
 2 Decisions
 - Include: Stay at the same index because repetition is allowed
