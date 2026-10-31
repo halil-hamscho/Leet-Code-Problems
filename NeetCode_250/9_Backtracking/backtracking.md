@@ -73,6 +73,7 @@ def dfs(start, state):
 
 this is especially intuitive when constructing combinations or permutations
 - Each recursion level chooses the next element of the combination
+- ALSO for loop handles edge case of index == len(numbers): return
 
 1. Continue: skip the current candidate
     if total + candiates[i] > target:
