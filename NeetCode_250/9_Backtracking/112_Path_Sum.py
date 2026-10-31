@@ -21,6 +21,22 @@ It is preferred to use local state when possible, since it makes recursion easie
 reason about and reduces the risk of backtracking mistakes
 
 Use shared mutable state when necessary such as maintaing a path, visited set, or modifying a board
+
+Pattern: Top Down DFS with Recursive State
+
+Interview Recognition Heuristics:
+1. Root to leaf path: DFS
+2. Information from parent to children: Top Down 
+3. Does any valid path exist? Return boolean
+4. Need all valid paths? Backtracking
+
+Backtracking Lesson:
+- Local State vs. Shared State
+Local state no restoration needed
+Shared State: restore changes when necessary so other branches start with the correct state
+
+Time: O(n)
+Space: O(h)
 """
 
 
