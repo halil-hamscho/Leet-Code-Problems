@@ -142,6 +142,30 @@ for num in nums:
 
 In this case, Order MATTERS, the for loop tells us that the choices that remain valid after selecting an element are every element not already selected (in the used set)
 
+Two Valid Approaches
+
+1. Boolean Array
+
+used = [False] * len(nums)
+
+if used[i]:
+    continue
+
+used[i] = True
+dfs()
+used[i] = False
+
+2. Set of indices
+
+used = set()
+
+if i in used:
+    continue
+
+used.add(i)
+dfs()
+used.remove(i)
+
 Mental Models
 
 1. Subsets: Pick or skip
@@ -150,6 +174,8 @@ Mental Models
     2. Exclude the curr element
 
     State: index
+
+    - can also use the for i in range(index, len(nums)):
 
 2. Combinations: choose from remaining candidates
 
@@ -165,6 +191,12 @@ Mental Models
 
     State: used
 
+    used can be either a set of nums or in harder problems should be an array of indices 
+    so that way when we are backtracking we keep track of indices rather than values (and avoid duplicates)
+
+
 Am I selecting elements or arranging elements?
     - if selecting, think subsets or combinations
     - if arranging, think permutations
+
+If there is duplicates, for loop is preferred as a way to perform any conditional statement in the same recursion depth
