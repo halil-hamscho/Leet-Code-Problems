@@ -95,3 +95,76 @@ for i in range(index, len(candidates)):
 
 3. return: exit the entire DFS call
 this also works for when candidates are sorted
+
+
+Main Difference between Subsets and Combinations
+- Both explore a path, backtrack and undo decisions, both can also have limits
+
+Subsets: Include or Exclude
+
+path.append(nums[index])
+dfs(index + 1)
+
+path.pop()
+dfs(index + 1)
+
+We explicitly include and or exclude
+
+Combinations: Choose the next element
+
+for i in range(index, n + 1):
+    path.append(i)
+    dfs(i + 1)
+    path.pop()
+
+instead of explicitly decising whether to include or exclude each element, ask
+- Which element should I choose next?
+
+The loop explores every possible next choice
+
+Permutations
+
+Time: O(n x n!)
+for n distinct numbers, there are n! possible permutations, each completed
+permutation requires O(n) time to copy the result
+
+for num in nums:
+    if num in used:
+        continue
+
+    path.append(num)
+    used.add(num)
+
+    dfs()
+
+    path.pop()
+    used.remove(num)
+
+In this case, Order MATTERS, the for loop tells us that the choices that remain valid after selecting an element are every element not already selected (in the used set)
+
+Mental Models
+
+1. Subsets: Pick or skip
+
+    1. Include the curr element
+    2. Exclude the curr element
+
+    State: index
+
+2. Combinations: choose from remaining candidates
+
+    - Choose the next element from the candidates appearing after your current position
+
+    State: start
+
+3. Permutations: Choose from unused candidates
+
+    - Here, we are not deciding whether to include an element
+    - We are deciding which unused element should occupy the next position
+        permutations are about filling positions, not deciding whether to include elements
+
+    State: used
+
+Am I selecting elements or arranging elements?
+    - if selecting, think subsets or combinations
+    - if arranging, think permutations
