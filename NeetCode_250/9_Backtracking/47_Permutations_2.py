@@ -44,7 +44,7 @@ class Solution:
 
             seen = set()
             for i, num in enumerate(nums):
-                if used[i]:
+                if used[i]: # already used in our curr permutation
                     continue
 
                 if num in seen:
