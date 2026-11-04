@@ -207,8 +207,9 @@ Backtracking Heuristic:
 When the order of decisions does not affect correctness, consider processing the most restrictive choices first
 
 
-- Subsets: Include or exclude an element
+- Subsets: For each element, decide whether to include it (no)
 - Combinations: Choose which elements belong in a group
 - Permutations: Choose which unused element comes next
 - Matchsticks to Square: Every element must be used, so choose which group receives it
+- N Queens: choose a column for each row, prune positions that violate col and diag constraints
 
