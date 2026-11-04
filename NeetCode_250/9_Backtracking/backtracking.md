@@ -200,3 +200,15 @@ Am I selecting elements or arranging elements?
     - if arranging, think permutations
 
 If there is duplicates, for loop is preferred as a way to perform any conditional statement in the same recursion depth
+
+
+Backtracking Heuristic:
+
+When the order of decisions does not affect correctness, consider processing the most restrictive choices first
+
+
+- Subsets: Include or exclude an element
+- Combinations: Choose which elements belong in a group
+- Permutations: Choose which unused element comes next
+- Matchsticks to Square: Every element must be used, so choose which group receives it
+
