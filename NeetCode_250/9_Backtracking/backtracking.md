@@ -212,4 +212,16 @@ When the order of decisions does not affect correctness, consider processing the
 - Permutations: Choose which unused element comes next
 - Matchsticks to Square: Every element must be used, so choose which group receives it
 - N Queens: choose a column for each row, prune positions that violate col and diag constraints
+- N Queens 2: no board, or result. We just count the occurances through sum
+    - if we just wanted to find one occurance then 
+        if dfs(row + 1):
+            return True
+    - and base case
+        if row == n:
+            return True
 
+DFS
+Goal
+Generate all solutions -> Save each solution and continue exploring
+Count all solutions -> Increment a counter and continue exploring
+Find any solution -> Return True immediately when one is found
