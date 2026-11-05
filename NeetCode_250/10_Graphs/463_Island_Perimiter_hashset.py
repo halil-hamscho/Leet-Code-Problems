@@ -1,3 +1,5 @@
+
+
 class Solution:
     def islandPerimeter(self, grid: list[list[int]]) -> int:
 
@@ -14,7 +16,7 @@ class Solution:
             if grid[row][col] == 0:
                 return 1
 
-            if grid[row][col] in visited:
+            if (row, col) in visited:
                 return 0
 
             # Mark
@@ -22,17 +24,17 @@ class Solution:
 
             # Explore
             result = 0
-            result += dfs(row - 1, col, grid) # Up
-            result += dfs(row + 1, col, grid) # Down
-            result += dfs(row, col - 1, grid) # Left
-            result += dfs(row, col + 1, grid) # Right
+            result += dfs(row - 1, col) # Up
+            result += dfs(row + 1, col) # Down
+            result += dfs(row, col - 1) # Left
+            result += dfs(row, col + 1) # Right
 
             return result
 
         for row in range(ROWS):
             for col in range(COLS):
                 if grid[row][col] == 1:
-                    return dfs(row, col, grid)
+                    return dfs(row, col)
 
 
 if __name__ == "__main__":
