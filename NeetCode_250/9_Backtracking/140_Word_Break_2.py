@@ -17,6 +17,26 @@ path that tells us the current string?
 Invariant:
 check s[:i + 1] if the string is in wordDict, then we do recursion on everything else to the right
 
+Pattern: Backtracking with String Partitioning
+
+a | b | c | d
+4 chars, 3 gaps
+n - 1 gaps
+
+Time: O(n * 2^n)
+exponential partitioning O(2^n)
+string copy O(n)
+result append O(n)
+
+Space: O(D + Sn)
+stack O(n)
+path O(n)
+dictionary set O(D)
+possible exponential partitions S = O(2^n)
+
+REcognition: Find all the ways to partition a sequence into valid contigous pieces
+
+
 """
 
 class Solution:

@@ -219,6 +219,9 @@ When the order of decisions does not affect correctness, consider processing the
     - and base case
         if row == n:
             return True
+- Word Break 2
+    - string partition, prune the serach by checking if a candidate substring is a valid dict word
+
 
 DFS
 Goal
