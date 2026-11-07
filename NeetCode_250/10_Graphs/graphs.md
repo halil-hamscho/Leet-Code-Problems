@@ -82,3 +82,9 @@ Types of Graphs
     - Unweighted (refers to value or cost of edges)
     - Acyclic (a finite directed graph with no directed cycles)
     - Cyclic (graph that contains atleast one cycle)
+
+Important Connections   What DFS Does
+733 Flood Fill          Changes connected cells
+463 Island Perimeter    Counts exposed edges
+200 # of Islands        Marks connected components
+695 Max area of island  Counts cells in each component
