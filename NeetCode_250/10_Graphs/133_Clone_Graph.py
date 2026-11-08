@@ -3,6 +3,25 @@
 
 The give node will always be the first node with val 1
 
+Pattern: Graph traversal + cloning
+Algorithm: BFS
+
+Time: O(V + E)
+V = Number of Vertices (nodes)
+E = Number of Edges (connections)
+
+Every Node is Cloned exactly once -> V
+We process all edges/neighbors -> E
+
+Space: O(V)
+- Map and Queue take up O(V)
+
+Python Concepts:
+- BFS, deque, dictionary keys
+
+When ever we are asked to clone something,
+always think, can I keep a mapping between the original and the copy
+
 """
 from collections import deque
 
@@ -30,11 +49,11 @@ class Solution:
 
                 if neighbor not in clones:
                     clones[neighbor] = Node(neighbor.val)
+                    queue.append(neighbor)
 
-                queue.append(neighbor)
                 copy.neighbors.append(clones[neighbor])
 
-        return
+        return clones[node]
 
 
 if __name__ == "__main__":
