@@ -24,10 +24,19 @@
 3. Graph Algorithms
 
     1. Depth-First-Search
+        Goal: follow one path as deeply as possible before exploring alternatives
         - typically keeps visited cells marked (once cell is processed, no need to process it again)
         - eexplores each reachable node once
         - often O(V + E)
     2. Breadth-First-Search
+        - Natural for shortest paths with equal movement costs
+        Goal: explore cells in increasing order of distance from its starting point. Thefore the first time BFS reaches a cell, it has found the shortest path to that cell
+        - Most commonly used to find the shortest path in a graph
+        - Initialize (Queue) -> Process (while queue: pop) -> Explore
+            for neighbor in get_neighbors(node):
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
     3. Dijkstra's Algorithm
     4. Topological Sort
 
@@ -88,3 +97,20 @@ Important Connections   What DFS Does
 463 Island Perimeter    Counts exposed edges
 200 # of Islands        Marks connected components
 695 Max area of island  Counts cells in each component
+
+General BFS Template
+
+from collectiosn import deque
+
+queue = deque([start])
+visited = {start}
+
+while queue:
+    node = queue.popleft()
+
+    # Process the current node
+
+    for neighbor in get_neighbors(node):
+        if neighbor not in visited:
+            visited.add(neighbor)
+            queue.append(neighbor)
