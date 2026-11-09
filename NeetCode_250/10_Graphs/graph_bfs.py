@@ -68,4 +68,18 @@ Note:
 consider starting BFS from all sources simultaneously
 
 Mental Rule: Mark a node as visited when you enqueue it, nto when you dequeue it
+
+
+from collections import deque
+
+nums = [1, 2, 3]
+
+queue = deque(nums)
+
+print(queue)
+deque([1, 2, 3])
+
+deque(iterable) -> creates a deque containin each element
+queue.append(iterable) -> adds the entire iterable as one element
+queue.extend(iterable) -> adds every element individually to an existing deque
 """
