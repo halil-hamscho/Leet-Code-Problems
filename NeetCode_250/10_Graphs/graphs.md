@@ -114,3 +114,10 @@ while queue:
         if neighbor not in visited:
             visited.add(neighbor)
             queue.append(neighbor)
+
+994 Rotting Oranges
+    - add rotten oranges to queue, then explore one level at a time
+
+417 Pacific Atlantic Water FLow
+    - start with BFS from all cells bordering each ocean
+    - determine which cells can reach the ocean 
