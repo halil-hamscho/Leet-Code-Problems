@@ -18,6 +18,25 @@ Adjacency List?
         - queue
 
 Pattern: Directed Graph + DFS Cycle Detection
+
+Intuition: DFS encounters a node that is still being explored in the current recursion path
+
+visiting = current recursion path
+visited = completely explored, safe
+
+Time: O(V + E)
+Each vertex is fully explored at most once, and each directed edge is examined at most once
+
+Space: O(V + E)
+Adjacency List: O(V + E)
+visiting: O(V)
+visited: O(V)
+DFS recursion stack: O(V)
+
+Important Lessons
+1. Mark the current node
+2. Backtrackingis essential
+3. Dead end is not a cycle, it simply means DFS can finish exploring that path
 """
 from collections import defaultdict
 
