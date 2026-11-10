@@ -39,7 +39,31 @@
                     queue.append(neighbor)
     3. Dijkstra's Algorithm
     4. Topological Sort
+    
+    Cycle Detection
+        1. DFS with cycle detection (backtracking)
+            - 3 States
+                1. Unvisited: haven't explored this node
+                2. Visiting: the node is currently in our DFS recursion path
+                3. Visited: we completely explored this node and descendants
+            Key Rule: encountering a visting node means a cycle exists
 
+                visiting.add(node)
+
+                for neighbor in adjList[node]:
+                    dfs(neighbor)
+
+                visiting.remove(node)
+                visited.add(node)
+
+            - "Did I return to something I'm still exploring?"
+            
+        2. Topological Sorting
+            - Indegree: # of incoming edges (prerequisites)
+            - Queue: courses with indegree of 0
+            Key Rule: if we cannot process all vertices a cycle exists
+
+            - "Can I keep completing tasks until none remain?"
     IDIOM
     1. Check -> Mark -> Explore
         - Check: is the node valid, and have we alread visited it
