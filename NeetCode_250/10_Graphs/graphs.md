@@ -63,6 +63,21 @@
             - Queue: courses with indegree of 0
             Key Rule: if we cannot process all vertices a cycle exists
 
+            If a directed graph has no cycles, repeatedly removing
+            nodes with indegree zero will eventually remove every node
+
+            completed = 0
+            while queue:
+                node = queue.popleft()
+                completed += 1
+
+                for neighbor in adjList[node]:
+                    indegree[neighbor] -= 1
+
+                    if indegree[neighbor] == 0:
+                        completed += 1
+                        queue.append(neighbor)
+
             - "Can I keep completing tasks until none remain?"
     IDIOM
     1. Check -> Mark -> Explore

@@ -53,7 +53,6 @@ class Solution:
                 indegree[neighbor] -= 1
 
                 if indegree[neighbor] == 0:
-                    completed += 1
                     queue.append(neighbor)
 
         if completed == numCourses:
@@ -64,4 +63,4 @@ class Solution:
 
 if __name__ == "__main__":
     sol = Solution()
-    result = sol.canFinish(numCourses=6, prerequisites=[[1,0],[1,2],[3,1],[3,2],[2,4],[4,5],[2,5]])
+    result = sol.canFinish(numCourses=4, prerequisites=[[1,0],[2,0],[3,1],[3,2]])
