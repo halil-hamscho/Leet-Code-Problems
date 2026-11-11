@@ -160,3 +160,13 @@ while queue:
 417 Pacific Atlantic Water FLow
     - start with BFS from all cells bordering each ocean
     - determine which cells can reach the ocean 
+
+More on Topological Sorting
+    - The same way
+        Visited Set: Gurantees that we've already discovered or processed a particular node, depending on when we mark it
+
+    Topological Sorting (Kahn's Algorithm) gurantees that all predecessors of a node have been processed before we process that node, provided that the graph is
+        - a Directed Acyclical Graph (DAG)
+
+    visited tells us something about an individual node
+    Topological Order: tells us something about the dependencies between nodes 
