@@ -39,6 +39,7 @@
                     queue.append(neighbor)
     3. Dijkstra's Algorithm
     4. Topological Sort
+    5. Union Find
     
     Cycle Detection
         1. DFS with cycle detection (backtracking)
@@ -170,3 +171,85 @@ More on Topological Sorting
 
     visited tells us something about an individual node
     Topological Order: tells us something about the dependencies between nodes 
+
+Union Find
+- a data structure that efficiently answers 2 questions
+
+1. Find: which connected component does a node belong to?
+2. Union: Can we merge the connected components containing 2 nodes?
+
+Example: 1, 2, 3, 4, 5
+    Process
+        - edge [1, 2] (1, 2), 3, 4, 5
+        - edge [3, 4] (1, 2) (3, 4), 5
+        - edge [2, 3] (1, 2, 3, 4), 5
+
+Union Find maintains that connectivity information as edges are processed
+    - particularly useful when a problem involves repeatedly connecting nodes
+        and checking whether they already belong to the same component
+Union Find typically maintains an array called parent
+
+1. Find(x)
+    def find(x):
+        while parent[x] != x:
+            x = parent[x]
+        return x
+
+    Invariant: every node eventually leads to the root of it's connected component
+
+    With Path Compresion
+    def find(x):
+        if parent[x] == x:
+            return x
+
+        root = find(parent[x])
+        parent[x] = root
+
+        return root
+
+    or Python Shortcut
+    def find(x):
+        if parent[x] != x:
+            parent[x] = find(parent[x])
+        
+        return parent[x]
+
+2. Union(a, b)
+    def union(a, b):
+        rootA = find(a)
+        rootB = find(b)
+
+        if rootA == rootB:
+            return False
+
+        parent[rootB] = rootA
+        return True
+
+    - Here we connect the roots to merge components completely
+
+    Optimization: Union by Rank or Union by Size
+    - We want to keep the tree depth shallow
+    - we maintain an additional array
+
+    parent = list(range(n + 1))
+    size = [1] * (n + 1)
+
+    if size[rootA] < size[rootB]:
+        parent[rootA] = rootB
+        size[rootB] += size[rootA]
+
+    else:
+        parent[rootB] = rootA
+        size[rootA] += size[rootB]
+    
+    return True
+
+    With Path compression and union byu size, union find achieves nearly constant time per operation
+    - it is amortized time complexity of O(alpha(N)) where alpha is the inverse Ackermann function, which grows extraordinarily slowly
+
+Graph Problem
+- Traverse Connected Component -> BFS or DFS
+- Count Connected Components -> BFS, DFS, or Union Find
+- Detect cycles in an undirected graph -> DFS or Union Find
+- Process edges while maintaining connectivity -> Union Find
+- Find shortest paths in an unweighted graph -> BFS
