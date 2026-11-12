@@ -244,8 +244,16 @@ Union Find typically maintains an array called parent
     
     return True
 
-    With Path compression and union byu size, union find achieves nearly constant time per operation
+    With Path compression and union by size, union find achieves nearly constant time per operation
     - it is amortized time complexity of O(alpha(N)) where alpha is the inverse Ackermann function, which grows extraordinarily slowly
+
+More on Union Find
+    Recognizing this pattern in future interviews
+        Look for problems involving:
+            - Groups that must be consolidated based on shared information
+            - Connected components that aren't explicitly presented as a graph
+            - Multiple records that might represent the same entity
+
 
 Graph Problem
 - Traverse Connected Component -> BFS or DFS
@@ -253,3 +261,15 @@ Graph Problem
 - Detect cycles in an undirected graph -> DFS or Union Find
 - Process edges while maintaining connectivity -> Union Find
 - Find shortest paths in an unweighted graph -> BFS
+
+
+Weighted Graph
+    A regular graph consists of
+        1. Vertices (nodes): The objects we're representing
+        2. Edges: the connections between those objects
+
+    A weighted graph adds one more piece of information
+    3. Weights: Numerical values associated with edges
+
+Recognition Question:
+    - Does the connection between two nodes carry information beyond the fact that they're connected
