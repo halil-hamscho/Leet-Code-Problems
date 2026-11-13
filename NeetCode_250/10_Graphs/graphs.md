@@ -273,3 +273,10 @@ Weighted Graph
 
 Recognition Question:
     - Does the connection between two nodes carry information beyond the fact that they're connected
+
+Leaf Pruning
+    - an algorithm used on undirected trees
+    - starts with indegree 1 and removes leaves until it finds the center of a tree
+    - start from outside and work inward
+    - instead of asking "which node produces the shortest tree?"
+        - ask "which nodes can I eliminate because they are definitely not optimal roots?"
