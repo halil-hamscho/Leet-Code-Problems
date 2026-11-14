@@ -1,5 +1,7 @@
 Heap
 
+- Only gurantees that every parent is smaller than or equal to its children
+
 Specialized Tree-Based Structure
     - Implements the abstract data type of "Priority Queue"
 
@@ -74,3 +76,90 @@ def pop(self):
 
     return result
 
+Heapify
+
+2 Ways to Construct a heap
+
+    1. Repeated Insertion (n elements)
+        1. Start with empty heap
+        2. Insert each element
+        3. Percolate up after each insertion
+
+    Time: O(n log n)
+
+    2. Bottom Up Heapify
+        1. Find the last node that has children
+        2. Starting from that node, move backwards toward the root
+        3. For each node, percolate it down until the heap property is satisfied
+
+        - start at last parent, modify existing array
+
+    Time: O(n)
+
+    Why?
+        - nodes near the bottom require very little movement
+        - nodes near the root can move farther, but there are very few of them
+        - leaf nodes require no movement at all
+
+    def heapify(nums):
+        n = len(nums)
+
+        def sift_down(i): # Similar to pop() operation
+            while 2 * i + 1 < n:
+                left = 2 * i + 1
+                right = 2 * i + 2
+
+                smallest = left
+
+                if right < n and nums[right] < nums[left]:
+                    smallest = right
+
+                if nums[i] <= nums[smallest]:
+                    break
+
+                nums[i], nums[smallest] = nums[smallest], nums[i]
+                i = smallest
+
+        for i in range(n // 2 - 1, -1, -1):
+            sift_down(i)
+
+        return nums
+
+Python already has heapify
+
+import heapq
+
+nums = [5, 3, 8, 1, 2]
+
+heapq.heapify(nums)
+O(n) time
+
+Invariant:
+    - ater processing a node, the entire subtree rooted at that node is a valid heap
+
+Why is building a heap using repeated heappush() operations O(n log n) while bottom up heapify() is O(n)
+
+Heap with 1,000,000 elements
+
+Notes
+500,000 leaf nodes -> 0 Levels
+250,000 nodes -> 1 level
+125,000 nodes -> 2 levels
+62,500 nodes -> 3 levels
+1 root node -> approximately 19 levels
+
+As the potential percolation distance increases, the number of node that require that muchwork decreases
+
+Interviews
+
+
+In order to implement a Max Heap
+we can negate the numbers before inserting them
+
+import heapq
+nums = [3, 7, 2, 9, 5]
+
+max_heap = [-num for num in nums]
+
+heapq.heapify(max_heap)
+print(-max_heap[0])
