@@ -163,3 +163,20 @@ max_heap = [-num for num in nums]
 
 heapq.heapify(max_heap)
 print(-max_heap[0])
+
+Points:
+973 K Closests Points to Origin
+1046 Last Stone Weight
+We can originally start with a min heap
+    1. Build Heap (either with heappush() or heapify) (N log N vs. N)
+    2. Iterate
+
+or we can use a max_heap bounded by k since we want kth smallest
+
+- K smallest -> max heap of size K
+- K largest -> min heap of size K
+
+min heap of N elements: keep every point and extract the K closests -> O(n log n)
+max heap of K elements: keep only the k closets points encountered so far, replacing the farthest whenever a closer point appears -> O(k log n)
+
+The second approach is essentially useful when K is much smaller than N

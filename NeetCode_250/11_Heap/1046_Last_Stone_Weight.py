@@ -1,5 +1,13 @@
 import heapq
 
+"""
+Max Heap we use negation
+
+O(n) for constructing initial heap
+processing noces
+
+"""
+
 class Solution:
     def lastStoneWeight(self, stones: list[int]) -> int:
         max_heap = [-stone for stone in stones]
