@@ -37,15 +37,15 @@ Clock -> current scheduling interval
 
 available_time = time + n + 1
 
-Edge Cases for heap and queue:
+Pattern: Greedy Scheduling with max heap and cooldown queue
 
-1. Heap Empty and Queue
-    - if queue[0][0] > time:
-        continue
-    - if queue[0][0] <= time
+Invariant: the heap contains eligible tasks, while the queue contains tasks waiting for cooldown
 
-2. Heap and no Queue:
-    1. 
+Time: O (T log k) assuming idle itervals are skipped
+
+Space: O(K)
+
+Instead of repeatedly updating how much time remains, store when an event becomes eligi8ble again
 
 """
 import heapq
@@ -70,7 +70,7 @@ class Solution:
             # Empty Heap
             if not max_heap:
                 if queue[0][0] > time:
-                    time += 1
+                    time = queue[0][0]
                     continue
 
             if queue and queue[0][0] <= time:
@@ -79,12 +79,12 @@ class Solution:
                 heapq.heappush(max_heap, val)
 
             # Nodes in Heap
-            count, letter = heapq.heappop(max_heap)
+            count, task = heapq.heappop(max_heap)
 
             available_time = time + n + 1 
 
             if count + 1 < 0:
-                queue.append((available_time, (count + 1, letter)))
+                queue.append((available_time, (count + 1, task)))
 
             time += 1
 

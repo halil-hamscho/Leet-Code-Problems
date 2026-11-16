@@ -188,3 +188,13 @@ When a problem involes:
     3. Returning those items to the available pool after a fixed delay
 
     Priority Queue (heap) + Cooldown Queue
+
+    Note, cooldowns are best expressed with the next available time (time + interval + 1)
+
+When you encounter a problem involving:
+
+1. Multiple individually sorted collections.
+2. A requirement to combine or retrieve elements in sorted order.
+3. A desire to avoid processing every element.
+
+A heap isn't always just a container for finding the largest or smallest element. Sometimes it's the mechanism that determines which part of the problem we explore next
