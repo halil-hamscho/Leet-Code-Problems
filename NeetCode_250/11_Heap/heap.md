@@ -180,3 +180,11 @@ min heap of N elements: keep every point and extract the K closests -> O(n log n
 max heap of K elements: keep only the k closets points encountered so far, replacing the farthest whenever a closer point appears -> O(k log n)
 
 The second approach is essentially useful when K is much smaller than N
+
+
+When a problem involes:
+    1. Selecting the highest priority item
+    2. Temporarily making selected items negligible
+    3. Returning those items to the available pool after a fixed delay
+
+    Priority Queue (heap) + Cooldown Queue

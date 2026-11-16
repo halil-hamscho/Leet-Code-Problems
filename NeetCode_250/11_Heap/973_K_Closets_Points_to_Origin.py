@@ -70,10 +70,10 @@ class Solution:
             distance = x*x + y*y
 
             if len(max_heap) < k:
-                heapq.heappush((distance, x, y))
+                heapq.heappush((-distance, x, y))
 
-            if distance < max_heap[0]:
-                heapq.heapreplace(max_heap, (distance, x, y))
+            if distance < -max_heap[0][0]:
+                heapq.heapreplace(max_heap, (-distance, x, y))
 
         result = []
         for _ in range(k):
