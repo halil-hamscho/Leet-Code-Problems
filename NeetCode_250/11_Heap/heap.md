@@ -198,3 +198,6 @@ When you encounter a problem involving:
 3. A desire to avoid processing every element.
 
 A heap isn't always just a container for finding the largest or smallest element. Sometimes it's the mechanism that determines which part of the problem we explore next
+
+
+For scheduling and simulation problems think -> select the highest priority element among dynamically eligible candidates -> Single Threaded CPU
