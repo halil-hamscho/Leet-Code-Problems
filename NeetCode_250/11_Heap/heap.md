@@ -201,3 +201,18 @@ A heap isn't always just a container for finding the largest or smallest element
 
 
 For scheduling and simulation problems think -> select the highest priority element among dynamically eligible candidates -> Single Threaded CPU
+
+A general pattern
+- popping an element from a heap doesn't mean you must immediately use or discard it
+
+while heap:
+    priority, value = heapq.heappop(heap)
+
+    if not valid(value):
+        # temporarily hold the best candidate
+        # select an alternative
+        # return the original candidate to the heap
+        pass
+    else:
+        # process the candidate
+        pass
