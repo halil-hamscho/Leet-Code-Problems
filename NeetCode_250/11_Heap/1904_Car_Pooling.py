@@ -24,7 +24,7 @@ class Solution:
         for passengers, start, end in trips:
 
             # Remove passengers whose destinations we have reached
-            while min_heap and min_heap[0][0] < start:
+            while min_heap and min_heap[0][0] <= start:
                 _, c = heapq.heappop(min_heap)
                 curr_capacity -= c
 
