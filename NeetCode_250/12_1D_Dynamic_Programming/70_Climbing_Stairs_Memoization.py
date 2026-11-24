@@ -10,18 +10,22 @@ State:
 
     dp[i]: number of distinct ways to reach step i
 
-    dp[0]: 0
-    dp[1]: 1
-    dp[2]: 2 (1 + 1 or 2)
+Base Cases:
+
+    dp[1] = 1
+    dp[2] = 2 (1 + 1 or 2)
 
 Recurrence:
 
     - count the number of paths so far
 
-    dp[i] = dp[]
+    dp[i] = dp[i - 1] + dp[i - 2]
 
+    every path to step i must come from step i - 1 or step i - 2
+
+Time: O(n)
+Space: O(n)
 """
-
 class Solution:
     def climbStairs(self, n: int) -> int:
 
