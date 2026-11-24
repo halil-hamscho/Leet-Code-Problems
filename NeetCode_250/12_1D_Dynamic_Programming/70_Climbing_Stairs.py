@@ -27,7 +27,7 @@ Time: O(n)
 Space: O(n)
 """
 class Solution:
-    def climbStairs(self, n: int) -> int:
+    def climbStairs_top_down(self, n: int) -> int:
 
         memo = {1:1, 2:2}
         def dfs(i):
@@ -40,6 +40,21 @@ class Solution:
         
         return dfs(n)
 
+    def climbStairs_bottom_up(self, n):
+
+        dp = [0] * (n + 1)
+        dp[1] = 1
+        dp[2] = 2
+
+        for i in range(3, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
+
+        return dp[n]
+
+    
+        
+
 if __name__ == "__main__":
     sol = Solution()
-    result = sol.climbStairs(n = 5)
+    result = sol.climbStairs_bottom_up(n = 5)
+    print(result)
