@@ -142,4 +142,8 @@ def dfs(i):
 @lru_cache(None) or @lru_cache(maxsize=N)
 - limits memory usage
 
+Advanced Algorithms
+- Palindromes (expand around center approach)
+
+
 
